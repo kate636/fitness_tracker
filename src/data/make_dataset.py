@@ -25,7 +25,7 @@ f = files[0]
 
 participant = f.split("-")[0].replace(data_path,"")
 lable = f.split("-")[1]
-category = f.split("-")[2].rstrip("123").rstrip("heavy_MetaWear_2019")
+category = f.split("-")[2].rstrip("123").rstrip("MetaWear_2019")
 
 df = pd.read_csv(f)
 
@@ -99,7 +99,7 @@ def read_data_from_files(files):
     for f in files:
         participant = f.split("-")[0].replace(data_path,"")
         lable = f.split("-")[1]
-        category = f.split("-")[2].rstrip("123").rstrip("heavy_MetaWear_2019")
+        category = f.split("-")[2].rstrip("123").rstrip("MetaWear_2019")
 
         df = pd.read_csv(f)
 
@@ -177,6 +177,7 @@ data_resampled = pd.concat(df.resample("200ms").apply(sampling).dropna() for df 
 
 data_resampled["set"] = data_resampled["set"].astype(int)
 data_resampled.info()
+data_resampled[data_resampled["category"] == "heavy"].head()
 
 # --------------------------------------------------------------
 # Export dataset
